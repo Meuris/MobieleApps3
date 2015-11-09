@@ -5,7 +5,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/titelTextView"
+        android:text="@string/titel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/radiusTextView"
+        android:text="@string/radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titelTextView"
+        android:layout_alignLeft="@+id/titelTextView"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <SeekBar
+        android:id="@+id/radiusSeekBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>

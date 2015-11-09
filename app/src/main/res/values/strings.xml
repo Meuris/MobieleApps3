@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RestaurantApp</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="titel">Welkom bij de restaurant app!</string>
+    <string name="radius">Geef het gewenste bereik in:</string>
     <string name="action_settings">Settings</string>
 </resources>

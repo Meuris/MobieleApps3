@@ -27,8 +27,20 @@
 
     <SeekBar
         android:id="@+id/radiusSeekBar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radiusTextView"
+        android:layout_alignLeft="@+id/radiusTextView"
+        android:max="50"
+        android:progress="25" />
+
+    <TextView
+        android:id="@+id/radiusAmountTextView"
+        android:text=""
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radiusTextView"
+        android:layout_toRightOf="@id/radiusSeekBar" />
 
 
 

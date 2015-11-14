@@ -10,12 +10,11 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener,
-        View.OnKeyListener{
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener {
 
     private TextView radiusAmountTextView;
     private SeekBar radiusSeekBar;
-    private int progress;
+    private int value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +25,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
-        radiusSeekBar.setOnKeyListener(this);
-
-        showRadius();
-    }
-
-    public void showRadius() {
-        progress = radiusSeekBar.getProgress();
     }
 
     @Override
@@ -60,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        radiusAmountTextView.setText(String.valueOf(progress));
     }
 
     @Override
@@ -75,11 +67,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return false;
-    }
-
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
         return false;
     }
 }

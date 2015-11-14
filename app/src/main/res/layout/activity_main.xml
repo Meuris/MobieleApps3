@@ -27,20 +27,26 @@
 
     <SeekBar
         android:id="@+id/radiusSeekBar"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radiusTextView"
-        android:layout_alignLeft="@+id/radiusTextView"
         android:max="50"
-        android:progress="25" />
+        android:progress="25"
+        android:layout_alignBottom="@+id/radiusEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:id="@+id/radiusAmountTextView"
-        android:text="@string/radiusAmount"
+    <EditText
+        android:id="@+id/radiusEditText"
+        android:text="@string/radiusEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radiusTextView"
-        android:layout_toRightOf="@id/radiusSeekBar" />
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/radiusTextView"
+        android:layout_toRightOf="@+id/radiusSeekBar"
+        android:layout_toEndOf="@+id/radiusSeekBar" />
 
 
 

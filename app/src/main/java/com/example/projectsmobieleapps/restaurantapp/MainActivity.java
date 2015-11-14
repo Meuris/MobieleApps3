@@ -6,25 +6,27 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener {
 
-    private TextView radiusAmountTextView;
     private SeekBar radiusSeekBar;
-    private int value;
+    private EditText radiusEditText;
+    private String radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        radiusAmountTextView = (TextView) findViewById(R.id.radiusAmountTextView);
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
+        radiusEditText = (EditText) findViewById(R.id.radiusEditText);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
+        radiusEditText.setOnEditorActionListener(this);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        radiusAmountTextView.setText(String.valueOf(progress));
+        radiusEditText.setText(String.valueOf(progress));
     }
 
     @Override
@@ -67,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if ((actionId == EditorInfo.IME_ACTION_DONE) || (actionId == EditorInfo.IME_ACTION_UNSPECIFIED)) {
+            radius = radiusEditText.getText().toString();
+            radiusSeekBar.setProgress(Integer.valueOf(radius));
+        }
         return false;
     }
 }

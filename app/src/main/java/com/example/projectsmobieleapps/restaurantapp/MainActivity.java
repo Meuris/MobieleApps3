@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private TextView radiusAmountTextView;
     private SeekBar radiusSeekBar;
+    private int progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusSeekBar.setOnKeyListener(this);
+
+        showRadius();
+    }
+
+    public void showRadius() {
+        progress = radiusSeekBar.getProgress();
     }
 
     @Override
@@ -35,9 +42,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         return true;
     }
 
-    public void showRadius() {
-        int progress = radiusSeekBar.getProgress();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -56,12 +60,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        radiusAmountTextView.setText(progress);
+
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        showRadius();
+
     }
 
     @Override

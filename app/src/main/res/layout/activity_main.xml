@@ -48,6 +48,13 @@
         android:layout_toRightOf="@+id/radiusSeekBar"
         android:layout_toEndOf="@+id/radiusSeekBar" />
 
-
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/radiusSeekBar"
+        android:layout_alignLeft="@+id/radiusSeekBar"
+        android:text="@string/testButton"/>
 
 </RelativeLayout>

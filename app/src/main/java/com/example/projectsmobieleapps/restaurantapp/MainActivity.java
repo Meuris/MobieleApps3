@@ -1,5 +1,6 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -7,15 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener {
 
     private SeekBar radiusSeekBar;
     private EditText radiusEditText;
     private String radius;
+    private Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
         radiusEditText = (EditText) findViewById(R.id.radiusEditText);
+        testButton  = (Button) findViewById(R.id.testButton);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusEditText.setOnEditorActionListener(this);
@@ -74,5 +78,15 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             radiusSeekBar.setProgress(Integer.valueOf(radius));
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.testButton:
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

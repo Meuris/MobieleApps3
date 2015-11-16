@@ -6,4 +6,5 @@
     <string name="action_settings">Settings</string>
     <string name="radiusAmount">15</string>
     <string name="radiusEdit">15</string>
+    <string name="title_activity_google">GoogleActivity</string>
 </resources>

@@ -7,4 +7,5 @@
     <string name="radiusAmount">15</string>
     <string name="radiusEdit">15</string>
     <string name="title_activity_google">GoogleActivity</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -13,12 +14,20 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private SeekBar radiusSeekBar;
     private EditText radiusEditText;
     private String radius;
-    private Button testButton;
+
+    private TextView longitudeTestView;
+    private TextView latitudeTestView;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +36,24 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
         radiusEditText = (EditText) findViewById(R.id.radiusEditText);
-        testButton  = (Button) findViewById(R.id.testButton);
+
+        longitudeTestView = (TextView) findViewById(R.id.longitudeTestView);
+        latitudeTestView = (TextView) findViewById(R.id.latitudeTestView);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusEditText.setOnEditorActionListener(this);
+
+        buildGoogleApiClient();
+
+        mGoogleApiClient.connect();
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
     }
 
     @Override
@@ -82,11 +105,27 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.testButton:
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-                break;
+
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+            longitudeTestView.setText(String.valueOf(mLastLocation.getLatitude()));
+            latitudeTestView.setText(String.valueOf(mLastLocation.getLongitude()));
         }
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 }

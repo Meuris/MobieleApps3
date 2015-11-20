@@ -57,4 +57,22 @@
         android:layout_alignLeft="@+id/radiusSeekBar"
         android:text="@string/testButton"/>
 
+    <TextView
+        android:id="@+id/longitudeTestView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/testButton"
+        android:layout_alignLeft="@+id/testButton"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/latitudeTestView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/testButton"
+        android:layout_toRightOf="@+id/longitudeTestView"
+        android:text=""/>
+
 </RelativeLayout>

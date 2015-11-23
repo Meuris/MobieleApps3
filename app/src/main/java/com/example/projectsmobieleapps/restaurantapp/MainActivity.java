@@ -22,9 +22,12 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import android.support.v4.app.FragmentActivity;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener, ConnectionCallbacks, OnConnectionFailedListener {
 
     private SeekBar radiusSeekBar;
     private EditText radiusEditText;
@@ -62,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
                 .build();
     }
 
@@ -84,38 +87,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-        Log.i(TAG, "GoogleApiClient connection failed: " + result.toString());
-        if (!result.hasResolution()) {
-            // Show a localized error dialog.
-            GooglePlayServicesUtil.getErrorDialog(
-                    result.getErrorCode(), this, 0, new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-                            retryConnecting();
-                        }
-                    }).show();
-            return;
-        }
-        // If there is an existing resolution error being displayed or a resolution
-        // activity has started before, do nothing and wait for resolution
-        // progress to be completed.
-        if (mIsInResolution) {
-            return;
-        }
-        mIsInResolution = true;
-        try {
-            result.startResolutionForResult(this, REQUEST_CODE_RESOLUTION);
-        } catch (IntentSender.SendIntentException e) {
-            Log.e(TAG, "Exception while starting resolution activity", e);
-            retryConnecting();
-        }
-    }
-
-    private void retryConnecting() {
-        mIsInResolution = false;
-        if (!mGoogleApiClient.isConnecting()) {
-            mGoogleApiClient.connect();
-        }
+        Log.d(TAG, "Failed to connect");
     }
 
     @Override
@@ -172,13 +144,13 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onConnected(Bundle bundle) {
+        Log.d(TAG, "Connected");
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
             longitudeTestView.setText(String.valueOf(mLastLocation.getLatitude()));
             latitudeTestView.setText(String.valueOf(mLastLocation.getLongitude()));
         }
-
     }
 
     @Override

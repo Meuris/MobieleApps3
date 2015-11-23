@@ -145,8 +145,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "Connected");
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
             longitudeTestView.setText(String.valueOf(mLastLocation.getLatitude()));
             latitudeTestView.setText(String.valueOf(mLastLocation.getLongitude()));

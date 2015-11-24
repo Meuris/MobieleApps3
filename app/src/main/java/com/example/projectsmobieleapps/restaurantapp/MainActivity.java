@@ -37,18 +37,14 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private TextView latitudeTestView;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
+    public static double longitude;
+    public static double latitude;
 
-    private static final String TAG = "MainActivity";
-    private static final String KEY_IN_RESOLUTION = "is_in_resolution";
-    private boolean mIsInResolution;
-    protected static final int REQUEST_CODE_RESOLUTION = 1;
+    private Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            mIsInResolution = savedInstanceState.getBoolean(KEY_IN_RESOLUTION, false);
-        }
         setContentView(R.layout.activity_main);
 
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
@@ -57,8 +53,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         longitudeTestView = (TextView) findViewById(R.id.longitudeTestView);
         latitudeTestView = (TextView) findViewById(R.id.latitudeTestView);
 
+        testButton = (Button) findViewById(R.id.testButton);
+
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusEditText.setOnEditorActionListener(this);
+
+        testButton.setOnClickListener(this);
 
         buildGoogleApiClient();
     }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-        Log.d(TAG, "Failed to connect");
+
     }
 
     @Override
@@ -139,16 +139,20 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onClick(View v) {
-
+        if (v == testButton) {
+            Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(mapsIntent);
+        }
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        Log.d(TAG, "Connected");
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
-            longitudeTestView.setText(String.valueOf(mLastLocation.getLatitude()));
-            latitudeTestView.setText(String.valueOf(mLastLocation.getLongitude()));
+            longitude = mLastLocation.getLongitude();
+            latitude = mLastLocation.getLatitude();
+            longitudeTestView.setText(String.valueOf(latitude));
+            latitudeTestView.setText(String.valueOf(longitude));
         }
     }
 

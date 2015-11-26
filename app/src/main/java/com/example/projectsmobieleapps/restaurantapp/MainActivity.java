@@ -24,7 +24,7 @@ import com.google.android.gms.location.LocationServices;
 import android.support.v4.app.FragmentActivity;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-
+import com.google.android.gms.location.places.Places;
 
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, TextView.OnEditorActionListener, View.OnClickListener, ConnectionCallbacks, OnConnectionFailedListener {
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
                 .build();
     }
 

@@ -10,12 +10,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import org.xml.sax.XMLReader;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 /**
  * Created by MichielAdmin on 28/11/2015.
@@ -59,6 +64,14 @@ public class FileIO extends ListActivity {
     }
 
     public Feed readFile() {
-        
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser parser = factory.newSAXParser();
+            XMLReader xmlreader = parser.getXMLReader();
+
+
+        } catch(Exception e) {
+            Log.e("Restaurant app", e.toString());
+        }
     }
 }

@@ -15,4 +15,5 @@
     <string name="items_title">RestaurantApp</string>
     <string name="item_latitude">Latitude</string>
     <string name="item_longitude">Longitude</string>
+    <string name="title_activity_Items">Restaurants</string>
 </resources>

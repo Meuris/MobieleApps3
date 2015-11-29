@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Feed {
     private String name = null;
-    private String longitude = null;
+    private String vicinity = null;
     private ArrayList<FeedItem> items;
 
     public Feed() {
@@ -22,12 +22,12 @@ public class Feed {
         return name;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setVicinity(String vicinity) {
+        this.vicinity = vicinity;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getVicinity() {
+        return vicinity;
     }
 
     public int addItem(FeedItem item) {

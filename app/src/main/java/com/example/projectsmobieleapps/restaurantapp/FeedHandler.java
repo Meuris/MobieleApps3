@@ -1,9 +1,9 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import java.util.jar.Attributes;
+import org.xml.sax.Attributes;
 
 /**
  * Created by MichielAdmin on 28/11/2015.
@@ -13,7 +13,7 @@ public class FeedHandler extends DefaultHandler {
     private FeedItem item;
 
     private boolean feedNameHasBeenRead = false;
-    private boolean feedLongitudeHasBeenRead = false;
+    private boolean feedVicinityHasBeenRead = false;
 
     private boolean isName = false;
     private boolean isVicinity = false;
@@ -83,18 +83,18 @@ public class FeedHandler extends DefaultHandler {
             }
             isName = false;
         }
-        else if (isVicinity) {
-            item.setVicinity(s);
-            isVicinity = false;
-        }
         else if (isLatitude) {
             item.setLatitude(s);
             isLatitude = false;
         }
         else if (isLongitude) {
-            if (feedLongitudeHasBeenRead == false) {
-                feed.setLongitude(s);
-                feedLongitudeHasBeenRead = true;
+            item.setLongitude(s);
+            isLongitude = false;
+        }
+        else if (isLongitude) {
+            if (feedVicinityHasBeenRead == false) {
+                feed.setVicinity(s);
+                feedVicinityHasBeenRead = true;
             }
             else {
                 item.setLongitude(s);

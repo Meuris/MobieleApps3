@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,9 +71,19 @@ public class FileIO extends ListActivity {
             SAXParser parser = factory.newSAXParser();
             XMLReader xmlreader = parser.getXMLReader();
 
+            FeedHandler theHandler = new FeedHandler();
+            xmlreader.setContentHandler(theHandler);
 
+            FileInputStream in = context.openFileInput(FILENAME);
+
+            InputSource is = new InputSource(in);
+            xmlreader.parse(is);
+
+            Feed feed = theHandler.getFeed();
+            return feed;
         } catch(Exception e) {
             Log.e("Restaurant app", e.toString());
+            return null;
         }
     }
 }

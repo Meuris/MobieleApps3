@@ -13,7 +13,7 @@ public class FeedHandler extends DefaultHandler {
     private FeedItem item;
 
     private boolean feedNameHasBeenRead = false;
-    private boolean feedVicinityHasBeenRead = false;
+    private boolean feedLongitudeHasBeenRead = false;
 
     private boolean isName = false;
     private boolean isVicinity = false;
@@ -61,10 +61,45 @@ public class FeedHandler extends DefaultHandler {
     }
 
     @Override
-    public void endElement(String namesaceURI, String localName, String qName) throws SAXException {
+    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         if (qName.equals("result")) {
             feed.addItem(item);
             return;
+        }
+    }
+
+    @Override
+    public void characters(char ch[], int start, int length) throws SAXException {
+
+        String s = new String(ch, start, length);
+
+        if (isName) {
+            if (feedNameHasBeenRead == false) {
+                feed.setName(s);
+                feedNameHasBeenRead = true;
+            }
+            else {
+                item.setName(s);
+            }
+            isName = false;
+        }
+        else if (isVicinity) {
+            item.setVicinity(s);
+            isVicinity = false;
+        }
+        else if (isLatitude) {
+            item.setLatitude(s);
+            isLatitude = false;
+        }
+        else if (isLongitude) {
+            if (feedLongitudeHasBeenRead == false) {
+                feed.setLongitude(s);
+                feedLongitudeHasBeenRead = true;
+            }
+            else {
+                item.setLongitude(s);
+            }
+            isLongitude = false;
         }
     }
 }

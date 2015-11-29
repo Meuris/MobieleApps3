@@ -12,4 +12,7 @@
     <string name="title_activity_google_play_services">GooglePlayServicesActivity</string>
     <string name="item_name">Restaurant</string>
     <string name="item_vicinity">Belgie</string>
+    <string name="items_title">RestaurantApp</string>
+    <string name="item_latitude">Latitude</string>
+    <string name="item_longitude">Longitude</string>
 </resources>

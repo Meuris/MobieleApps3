@@ -24,7 +24,7 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     private Feed feed;
     private FileIO io;
 
-    private TextView titleTextView;
+//    private TextView titleTextView;
     private ListView itemsListView;
 
     @Override
@@ -34,8 +34,10 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
         io = new FileIO(getApplicationContext());
 
-        titleTextView = (TextView) findViewById(R.id.titleTextView);
+//        titleTextView = (TextView) findViewById(R.id.titleTextView);
         itemsListView = (ListView) findViewById(R.id.itemsListView);
+
+        itemsListView.setOnItemClickListener(this);
 
         new DownloadFeed().execute();
     }
@@ -75,11 +77,11 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void updateDisplay() {
         if (feed == null) {
-            titleTextView.setText("Unables to get feed");
+//            titleTextView.setText("Unables to get feed");
             return;
         }
 
-        titleTextView.setText(feed.getName());
+//        titleTextView.setText(feed.getName());
 
         ArrayList<FeedItem> items = feed.getAllItems();
 

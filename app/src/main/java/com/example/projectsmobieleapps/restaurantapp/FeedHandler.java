@@ -74,14 +74,24 @@ public class FeedHandler extends DefaultHandler {
         String s = new String(ch, start, length);
 
         if (isName) {
-            if (feedNameHasBeenRead == false) {
+            /*if (feedNameHasBeenRead == false) {
                 feed.setName(s);
                 feedNameHasBeenRead = true;
             }
-            else {
+            else {*/
                 item.setName(s);
-            }
+//            }
             isName = false;
+        }
+        else if (isVicinity) {
+            /*if (feedVicinityHasBeenRead == false) {
+                feed.setVicinity(s);
+                feedVicinityHasBeenRead = true;
+            }
+            else {*/
+            item.setVicinity(s);
+//            }
+            isVicinity = false;
         }
         else if (isLatitude) {
             item.setLatitude(s);
@@ -89,16 +99,6 @@ public class FeedHandler extends DefaultHandler {
         }
         else if (isLongitude) {
             item.setLongitude(s);
-            isLongitude = false;
-        }
-        else if (isLongitude) {
-            if (feedVicinityHasBeenRead == false) {
-                feed.setVicinity(s);
-                feedVicinityHasBeenRead = true;
-            }
-            else {
-                item.setLongitude(s);
-            }
             isLongitude = false;
         }
     }

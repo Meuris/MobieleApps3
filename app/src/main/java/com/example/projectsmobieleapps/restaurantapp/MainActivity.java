@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private SeekBar radiusSeekBar;
     private EditText radiusEditText;
-    public static String radius = "15";
+    public static int radius = 15000;
 
     private TextView longitudeTestView;
     private TextView latitudeTestView;
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         radiusEditText.setText(String.valueOf(progress));
-        radius = String.valueOf(progress);
+        radius = progress * 1000;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if ((actionId == EditorInfo.IME_ACTION_DONE) || (actionId == EditorInfo.IME_ACTION_UNSPECIFIED)) {
-            radius = radiusEditText.getText().toString();
+            radius = Integer.valueOf(radiusEditText.getText().toString());
             radiusSeekBar.setProgress(Integer.valueOf(radius));
         }
         return false;

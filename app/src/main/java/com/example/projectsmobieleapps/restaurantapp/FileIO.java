@@ -31,7 +31,7 @@ public class FileIO extends ListActivity {
     private static String latitude = String.valueOf(MainActivity.latitude);
     private static String longitude = String.valueOf(MainActivity.longitude);
     private static String radius = String.valueOf(MainActivity.radius);
-    private final String googleKey = "AIzaSyD7Or2O3wMiBNa4FFXpSEMBC4ruxiYHC1A";
+    private final String googleKey = "AIzaSyBDy6vuCYHAOCUBWS1LnLsAPQtsjOcQH14";
     private final String URL_STRING = "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location="
             + latitude + "," + longitude +"&radius=" + radius + "&types=restaurant&key=" + googleKey;
     private Context context = null;
@@ -59,6 +59,8 @@ public class FileIO extends ListActivity {
                     out.write(buffer, 0, bytesRead);
                     bytesRead = in.read(buffer);
                 }
+                out.close();
+                in.close();
             } catch (IOException e) {
                 Log.e("Restaurant app", e.toString());
             }

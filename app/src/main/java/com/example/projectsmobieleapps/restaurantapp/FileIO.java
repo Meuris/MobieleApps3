@@ -30,7 +30,7 @@ import javax.xml.parsers.SAXParserFactory;
 public class FileIO extends ListActivity {
     private static String latitude = String.valueOf(MainActivity.latitude);
     private static String longitude = String.valueOf(MainActivity.longitude);
-    private static String radius = String.valueOf(MainActivity.radius);
+    private String radius = String.valueOf(MainActivity.radius);
     private final String googleKey = "AIzaSyBDy6vuCYHAOCUBWS1LnLsAPQtsjOcQH14";
     private final String URL_STRING = "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location="
             + latitude + "," + longitude +"&radius=" + radius + "&types=restaurant&key=" + googleKey;

@@ -118,10 +118,10 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
         /*intent.putExtra("name", item.getName());
         intent.putExtra("vicinity", item.getVicinity());*/
-        /*intent.putExtra("latitude", item.getLatitude());
-        intent.putExtra("longitude", item.getLongitude());
+        //intent.putExtra("latitude", item.getLatitude());
+        //intent.putExtra("longitude", item.getLongitude());
 
-        this.startActivity(intent);*/
+        //this.startActivity(intent);
 
         /*Intent mapsIntent = new Intent(ItemsActivity.this, MapsActivity.class);
         startActivity(mapsIntent);*/

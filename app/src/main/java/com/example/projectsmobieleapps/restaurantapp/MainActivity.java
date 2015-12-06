@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private SeekBar radiusSeekBar;
     private EditText radiusEditText;
-    public static int radius = 3;
+    public static int radius = 3000;
 
     private TextView longitudeTestView;
     private TextView latitudeTestView;

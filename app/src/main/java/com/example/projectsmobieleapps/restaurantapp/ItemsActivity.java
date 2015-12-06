@@ -1,6 +1,7 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -107,13 +109,21 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FeedItem item = feed.getItem(position);
 
-        Intent intent = new Intent(this, ItemActivity.class);
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + item.getLatitude() + "," + item.getLongitude() + "&mode=w");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
 
-        intent.putExtra("name", item.getName());
-        intent.putExtra("vicinity", item.getVicinity());
-        intent.putExtra("latitude", item.getLatitude());
+        //Intent intent = new Intent(this, MapsActivity.class);
+
+        /*intent.putExtra("name", item.getName());
+        intent.putExtra("vicinity", item.getVicinity());*/
+        /*intent.putExtra("latitude", item.getLatitude());
         intent.putExtra("longitude", item.getLongitude());
 
-        this.startActivity(intent);
+        this.startActivity(intent);*/
+
+        /*Intent mapsIntent = new Intent(ItemsActivity.this, MapsActivity.class);
+        startActivity(mapsIntent);*/
     }
 }

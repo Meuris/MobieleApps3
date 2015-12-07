@@ -55,7 +55,18 @@
         android:padding="10dp"
         android:layout_below="@+id/radiusSeekBar"
         android:layout_alignLeft="@+id/radiusSeekBar"
-        android:text="@string/testButton"/>
+        android:text="@string/testButton"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/showYourLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/radiusSeekBar"
+        android:layout_toRightOf="@+id/testButton"
+        android:text="@string/showLocationButton"
+        android:textAllCaps="false"/>
 
     <TextView
         android:id="@+id/longitudeTestView"

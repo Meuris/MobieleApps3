@@ -2,6 +2,7 @@ package com.example.projectsmobieleapps.restaurantapp;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+
+import com.google.android.gms.maps.SupportMapFragment;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -28,14 +31,19 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by MichielAdmin on 28/11/2015.
  */
 public class FileIO extends ListActivity {
-    private static String latitude = String.valueOf(MainActivity.latitude);
-    private static String longitude = String.valueOf(MainActivity.longitude);
+//    private Intent intent = getIntent();
+    private String latitude = String.valueOf(MainActivity.latitude);
+    private String longitude = String.valueOf(MainActivity.longitude);
     private String radius = String.valueOf(MainActivity.radius);
     private final String googleKey = "AIzaSyBDy6vuCYHAOCUBWS1LnLsAPQtsjOcQH14";
     private final String URL_STRING = "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location="
             + latitude + "," + longitude +"&radius=" + radius + "&types=restaurant&key=" + googleKey;
     private Context context = null;
     private final String FILENAME = "infolist.xml";
+
+    /*public FileIO() {
+
+    }*/
 
     public FileIO (Context context) {
         this.context = context;

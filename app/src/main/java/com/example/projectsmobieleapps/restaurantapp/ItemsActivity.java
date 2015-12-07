@@ -25,6 +25,8 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private Feed feed;
     private FileIO io;
+    /*private String startLatitude = String.valueOf(MainActivity.latitude);
+    private String startLongitude = String.valueOf(MainActivity.longitude);*/
 
 //    private TextView titleTextView;
     private ListView itemsListView;
@@ -108,6 +110,9 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FeedItem item = feed.getItem(position);
+
+        /*Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" + startLatitude + "," + startLongitude + "&daddr=" + item.getLatitude() + "," + item.getLongitude()));
+        startActivity(navigation);*/
 
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + item.getLatitude() + "," + item.getLongitude() + "&mode=w");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);

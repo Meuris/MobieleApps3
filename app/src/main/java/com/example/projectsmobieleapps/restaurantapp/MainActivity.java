@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     public static double latitude;
 
     private Button testButton;
+    private Button locationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +55,13 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         latitudeTestView = (TextView) findViewById(R.id.latitudeTestView);
 
         testButton = (Button) findViewById(R.id.testButton);
+        locationButton = (Button) findViewById(R.id.showYourLocation);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusEditText.setOnEditorActionListener(this);
 
         testButton.setOnClickListener(this);
+        locationButton.setOnClickListener(this);
 
         buildGoogleApiClient();
     }
@@ -143,7 +146,11 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public void onClick(View v) {
         if (v == testButton) {
-            Intent mapsIntent = new Intent(MainActivity.this, ItemsActivity.class);
+            Intent ItemsActivityIntent = new Intent(MainActivity.this, ItemsActivity.class);
+            startActivity(ItemsActivityIntent);
+        }
+        else if (v == locationButton) {
+            Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(mapsIntent);
         }
     }
@@ -156,6 +163,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             latitude = mLastLocation.getLatitude();
             longitudeTestView.setText(String.valueOf(latitude));
             latitudeTestView.setText(String.valueOf(longitude));
+
+            /*Intent intent = new Intent(this, FileIO.class);
+
+            intent.putExtra("latitude", latitude);
+            intent.putExtra("longitude", longitude);*/
+//            this.startActivity(intent);
         }
     }
 

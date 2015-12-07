@@ -24,10 +24,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
 
         String targetLatitude = intent.getStringExtra("latitude");
-        String targetLongitude = intent.getStringExtra("longitude");
+        String targetLongitude = intent.getStringExtra("longitude");*/
 //        setUpMapIfNeeded();
     }
 

@@ -46,6 +46,10 @@
             android:name=".ItemsActivity"
             android:label="@string/title_activity_Items" >
         </activity>
+        <!--<activity
+            android:name=".FileIO"
+            android:label="Restaurants">
+        </activity>-->
     </application>
 
 </manifest>

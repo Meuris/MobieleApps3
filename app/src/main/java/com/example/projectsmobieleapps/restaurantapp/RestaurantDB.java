@@ -1,9 +1,19 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by MichielAdmin on 6/12/2015.
  */
 public class RestaurantDB {
+
+    private SQLiteDatabase db;
+    private DBHelper dbHelper;
+
+    public RestaurantDB(Context context) {
+        dbHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
+    }
 
     //database constants
     public static final String DB_NAME = "restaurant.db";
@@ -36,4 +46,18 @@ public class RestaurantDB {
                     RESTAURANT_LONGITUDE + " TEXT,);";
 
     public static final String DROP_RESTAURANT_TABLE = "DROP TABLE IF EXISTS " + RESTAURANT_TABLE;
+
+    private void openReadableDB() {
+        db = dbHelper.getReadableDatabase();
+    }
+
+    private void openWriteableDb() {
+        db = dbHelper.getWritableDatabase();
+    }
+
+    private void closeDB() {
+        if (db != null) {
+            db.close();
+        }
+    }
 }

@@ -39,13 +39,13 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_items);
 
         io = new FileIO(getApplicationContext());
-        db = new RestaurantDB(getApplicationContext());
+        db = new RestaurantDB(this);
 
 //        titleTextView = (TextView) findViewById(R.id.titleTextView);
         itemsListView = (ListView) findViewById(R.id.itemsListView);
 
         itemsListView.setOnItemClickListener(this);
-        
+
         new DownloadFeed().execute();
     }
 
@@ -92,11 +92,16 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
         ArrayList<FeedItem> items = feed.getAllItems();
 
+        /*for (int i = 0; i < items.size(); i++) {
+
+        }*/
+
         ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
         for (FeedItem item : items) {
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("vicinity", item.getVicinity());
             map.put("name", item.getName());
+            db.insertRestaurant(item);
             data.add(map);
         }
 

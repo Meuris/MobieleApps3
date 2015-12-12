@@ -1,5 +1,6 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,6 +31,7 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
 //    private TextView titleTextView;
     private ListView itemsListView;
+    private RestaurantDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,13 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_items);
 
         io = new FileIO(getApplicationContext());
+        db = new RestaurantDB(getApplicationContext());
 
 //        titleTextView = (TextView) findViewById(R.id.titleTextView);
         itemsListView = (ListView) findViewById(R.id.itemsListView);
 
         itemsListView.setOnItemClickListener(this);
-
+        
         new DownloadFeed().execute();
     }
 

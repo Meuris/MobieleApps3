@@ -1,7 +1,12 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.google.android.gms.gcm.Task;
 
 /**
  * Created by MichielAdmin on 6/12/2015.
@@ -59,5 +64,38 @@ public class RestaurantDB {
         if (db != null) {
             db.close();
         }
+    }
+
+    private static class DBHelper extends SQLiteOpenHelper {
+        public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+            super(context, name, factory, version);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL(CREATE_RESTAURANT_TABLE);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+            Log.d("Restaurant", "Upgrading db from version " + oldVersion + "to " + newVersion);
+            db.execSQL(RestaurantDB.DROP_RESTAURANT_TABLE);
+            onCreate(db);
+        }
+    }
+
+    public long insertRestaurant(FeedItem item) {
+        ContentValues cv = new ContentValues();
+        cv.put(RESTAURANT_NAME, item.getName());
+        cv.put(RESTAURANT_VICINITY, item.getVicinity());
+        cv.put(RESTAURANT_LATITUDE, item.getLatitude());
+        cv.put(RESTAURANT_LONGITUDE, item.getLongitude());
+
+        this.openWriteableDb();
+        long rowID = db.insert(RESTAURANT_TABLE, null, cv);
+        this.closeDB();
+
+        return rowID;
     }
 }

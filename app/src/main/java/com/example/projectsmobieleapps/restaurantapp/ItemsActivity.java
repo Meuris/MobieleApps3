@@ -29,7 +29,7 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     /*private String startLatitude = String.valueOf(MainActivity.latitude);
     private String startLongitude = String.valueOf(MainActivity.longitude);*/
 
-//    private TextView titleTextView;
+    private TextView titleTextView;
     private ListView itemsListView;
     private RestaurantDB db;
 
@@ -41,7 +41,7 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
         io = new FileIO(getApplicationContext());
         db = new RestaurantDB(this);
 
-//        titleTextView = (TextView) findViewById(R.id.titleTextView);
+        titleTextView = (TextView) findViewById(R.id.titleTextView);
         itemsListView = (ListView) findViewById(R.id.itemsListView);
 
         itemsListView.setOnItemClickListener(this);
@@ -101,7 +101,8 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("vicinity", item.getVicinity());
             map.put("name", item.getName());
-            db.insertRestaurant(item);
+            long rowID = db.insertRestaurant(item);
+            titleTextView.setText(String.valueOf(rowID));
             data.add(map);
         }
 

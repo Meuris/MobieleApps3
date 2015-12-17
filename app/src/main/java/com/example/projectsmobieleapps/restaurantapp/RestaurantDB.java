@@ -45,10 +45,10 @@ public class RestaurantDB {
     //CREATE and DROP TABLE statements
     public static final String CREATE_RESTAURANT_TABLE =
             "CREATE TABLE " + RESTAURANT_TABLE + " (" + RESTAURANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    RESTAURANT_NAME + " TEXT NOT NULL UNIQUE, " +
+                    RESTAURANT_NAME + " TEXT NOT NULL, " +
                     RESTAURANT_VICINITY + " TEXT, " +
                     RESTAURANT_LATITUDE + " TEXT, " +
-                    RESTAURANT_LONGITUDE + " TEXT,);";
+                    RESTAURANT_LONGITUDE + " TEXT);";
 
     public static final String DROP_RESTAURANT_TABLE = "DROP TABLE IF EXISTS " + RESTAURANT_TABLE;
 

@@ -12,9 +12,6 @@ public class FeedHandler extends DefaultHandler {
     private Feed feed;
     private FeedItem item;
 
-    private boolean feedNameHasBeenRead = false;
-    private boolean feedVicinityHasBeenRead = false;
-
     private boolean isName = false;
     private boolean isVicinity = false;
     private boolean isLatitude = false;
@@ -74,23 +71,11 @@ public class FeedHandler extends DefaultHandler {
         String s = new String(ch, start, length);
 
         if (isName) {
-            /*if (feedNameHasBeenRead == false) {
-                feed.setName(s);
-                feedNameHasBeenRead = true;
-            }
-            else {*/
                 item.setName(s);
-//            }
             isName = false;
         }
         else if (isVicinity) {
-            /*if (feedVicinityHasBeenRead == false) {
-                feed.setVicinity(s);
-                feedVicinityHasBeenRead = true;
-            }
-            else {*/
             item.setVicinity(s);
-//            }
             isVicinity = false;
         }
         else if (isLatitude) {

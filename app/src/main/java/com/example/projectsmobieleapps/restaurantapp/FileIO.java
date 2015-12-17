@@ -31,7 +31,6 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by MichielAdmin on 28/11/2015.
  */
 public class FileIO extends ListActivity {
-//    private Intent intent = getIntent();
     private String latitude = String.valueOf(MainActivity.latitude);
     private String longitude = String.valueOf(MainActivity.longitude);
     private String radius = String.valueOf(MainActivity.radius);
@@ -40,10 +39,6 @@ public class FileIO extends ListActivity {
             + latitude + "," + longitude +"&radius=" + radius + "&types=restaurant&key=" + googleKey;
     private Context context = null;
     private final String FILENAME = "infolist.xml";
-
-    /*public FileIO() {
-
-    }*/
 
     public FileIO (Context context) {
         this.context = context;

@@ -8,7 +8,7 @@
     <string name="radiusEdit">3</string>
     <string name="title_activity_google">GoogleActivity</string>
     <string name="title_activity_maps">Map</string>
-    <string name="testButton">Test</string>
+    <string name="getRestaurantsButton">Zoek restaurants</string>
     <string name="title_activity_google_play_services">GooglePlayServicesActivity</string>
     <string name="item_name">Restaurant</string>
     <string name="item_vicinity">Belgie</string>
@@ -17,4 +17,5 @@
     <string name="item_longitude">Longitude</string>
     <string name="title_activity_Items">Restaurants</string>
     <string name="showLocationButton">Show my location</string>
+    <string name="afstandTextView">km</string>
 </resources>

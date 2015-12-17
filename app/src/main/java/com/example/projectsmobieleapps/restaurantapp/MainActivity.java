@@ -1,12 +1,9 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,10 +15,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import android.support.v4.app.FragmentActivity;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.places.Places;
@@ -33,14 +28,12 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private EditText radiusEditText;
     public static int radius = 3000;
 
-    private TextView longitudeTestView;
-    private TextView latitudeTestView;
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
     public static double longitude;
     public static double latitude;
 
-    private Button testButton;
+    private Button getRestaurantsButton;
     private Button locationButton;
 
     @Override
@@ -51,16 +44,13 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
         radiusEditText = (EditText) findViewById(R.id.radiusEditText);
 
-        longitudeTestView = (TextView) findViewById(R.id.longitudeTestView);
-        latitudeTestView = (TextView) findViewById(R.id.latitudeTestView);
-
-        testButton = (Button) findViewById(R.id.testButton);
+        getRestaurantsButton = (Button) findViewById(R.id.getRestaurantsButton);
         locationButton = (Button) findViewById(R.id.showYourLocation);
 
         radiusSeekBar.setOnSeekBarChangeListener(this);
         radiusEditText.setOnEditorActionListener(this);
 
-        testButton.setOnClickListener(this);
+        getRestaurantsButton.setOnClickListener(this);
         locationButton.setOnClickListener(this);
 
         buildGoogleApiClient();
@@ -97,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -105,12 +94,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -145,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onClick(View v) {
-        if (v == testButton) {
+        if (v == getRestaurantsButton) {
             Intent ItemsActivityIntent = new Intent(MainActivity.this, ItemsActivity.class);
             startActivity(ItemsActivityIntent);
         }
@@ -161,14 +145,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         if (mLastLocation != null) {
             longitude = mLastLocation.getLongitude();
             latitude = mLastLocation.getLatitude();
-            longitudeTestView.setText(String.valueOf(latitude));
-            latitudeTestView.setText(String.valueOf(longitude));
-
-            /*Intent intent = new Intent(this, FileIO.class);
-
-            intent.putExtra("latitude", latitude);
-            intent.putExtra("longitude", longitude);*/
-//            this.startActivity(intent);
         }
     }
 

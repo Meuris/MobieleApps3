@@ -49,13 +49,13 @@
         android:layout_toEndOf="@+id/radiusSeekBar" />
 
     <Button
-        android:id="@+id/testButton"
+        android:id="@+id/getRestaurantsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_below="@+id/radiusSeekBar"
         android:layout_alignLeft="@+id/radiusSeekBar"
-        android:text="@string/testButton"
+        android:text="@string/getRestaurantsButton"
         android:textAllCaps="false"/>
 
     <Button
@@ -64,26 +64,17 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_below="@+id/radiusSeekBar"
-        android:layout_toRightOf="@+id/testButton"
+        android:layout_toRightOf="@+id/getRestaurantsButton"
         android:text="@string/showLocationButton"
         android:textAllCaps="false"/>
 
     <TextView
-        android:id="@+id/longitudeTestView"
+        android:id="@+id/afstandTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_below="@+id/testButton"
-        android:layout_alignLeft="@+id/testButton"
-        android:text=""/>
-
-    <TextView
-        android:id="@+id/latitudeTestView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_below="@+id/testButton"
-        android:layout_toRightOf="@+id/longitudeTestView"
-        android:text=""/>
+        android:layout_toRightOf="@+id/radiusEditText"
+        android:layout_below="@+id/radiusTextView"
+        android:text="@string/afstandTextView"/>
 
 </RelativeLayout>

@@ -26,8 +26,6 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private Feed feed;
     private FileIO io;
-    /*private String startLatitude = String.valueOf(MainActivity.latitude);
-    private String startLongitude = String.valueOf(MainActivity.longitude);*/
 
     private TextView titleTextView;
     private ListView itemsListView;
@@ -84,17 +82,11 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void updateDisplay() {
         if (feed == null) {
-//            titleTextView.setText("Unables to get feed");
+            titleTextView.setText("Unable to get feed");
             return;
         }
 
-//        titleTextView.setText(feed.getName());
-
         ArrayList<FeedItem> items = feed.getAllItems();
-
-        /*for (int i = 0; i < items.size(); i++) {
-
-        }*/
 
         ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
         for (FeedItem item : items) {
@@ -120,24 +112,9 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FeedItem item = feed.getItem(position);
 
-        /*Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" + startLatitude + "," + startLongitude + "&daddr=" + item.getLatitude() + "," + item.getLongitude()));
-        startActivity(navigation);*/
-
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + item.getLatitude() + "," + item.getLongitude() + "&mode=w");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
-
-        //Intent intent = new Intent(this, MapsActivity.class);
-
-        /*intent.putExtra("name", item.getName());
-        intent.putExtra("vicinity", item.getVicinity());*/
-        //intent.putExtra("latitude", item.getLatitude());
-        //intent.putExtra("longitude", item.getLongitude());
-
-        //this.startActivity(intent);
-
-        /*Intent mapsIntent = new Intent(ItemsActivity.this, MapsActivity.class);
-        startActivity(mapsIntent);*/
     }
 }

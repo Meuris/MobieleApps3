@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.google.android.gms.gcm.Task;
-
 /**
  * Created by MichielAdmin on 6/12/2015.
  */

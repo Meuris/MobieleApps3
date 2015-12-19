@@ -2,16 +2,9 @@ package com.example.projectsmobieleapps.restaurantapp;
 
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-
-import com.google.android.gms.maps.SupportMapFragment;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -21,8 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

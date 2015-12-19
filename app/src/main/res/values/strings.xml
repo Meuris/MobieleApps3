@@ -18,18 +18,4 @@
     <string name="title_activity_Items">Restaurants</string>
     <string name="showLocationButton">Show my location</string>
     <string name="afstandTextView">km</string>
-
-    <string name="travel_title">Vervoersmethode</string>
-    <string name="travel_summary">Hier kan u de vervoersmethode aanpassen voor de routebeschrijving</string>
-    <string-array name="travel_keys">
-        <item>Te voet</item>
-        <item>Met de fiets</item>
-        <item>Met de auto</item>
-    </string-array>
-    <string-array name="travel_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-    <string name="travel_default">0</string>
 </resources>

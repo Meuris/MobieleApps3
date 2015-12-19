@@ -27,6 +27,7 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
     private TextView titleTextView;
     private ListView itemsListView;
     private RestaurantDB db;
+    private long rowID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +91,12 @@ public class ItemsActivity extends AppCompatActivity implements AdapterView.OnIt
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("vicinity", item.getVicinity());
             map.put("name", item.getName());
-            long rowID = db.insertRestaurant(item);
-            titleTextView.setText(String.valueOf(rowID));
+            boolean checkValidity = db.nameExists(item.getName());
+            if (checkValidity == false) {
+                rowID = db.insertRestaurant(item);
+                titleTextView.setText(String.valueOf(rowID));
+            }
+
             data.add(map);
         }
 

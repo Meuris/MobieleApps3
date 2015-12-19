@@ -1,7 +1,10 @@
 package com.example.projectsmobieleapps.restaurantapp;
 
+import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -43,7 +46,7 @@ public class RestaurantDB {
     //CREATE and DROP TABLE statements
     public static final String CREATE_RESTAURANT_TABLE =
             "CREATE TABLE " + RESTAURANT_TABLE + " (" + RESTAURANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    RESTAURANT_NAME + " TEXT NOT NULL, " +
+                    RESTAURANT_NAME + " TEXT NOT NULL UNIQUE, " +
                     RESTAURANT_VICINITY + " TEXT, " +
                     RESTAURANT_LATITUDE + " TEXT, " +
                     RESTAURANT_LONGITUDE + " TEXT);";
@@ -95,5 +98,12 @@ public class RestaurantDB {
         this.closeDB();
 
         return rowID;
+    }
+
+    public boolean nameExists(String name) {
+        this.openReadableDB();
+        long count = DatabaseUtils.queryNumEntries(db,
+                "restaurant", "restaurant_name = ?", new String[]{name});
+        return count > 0;
     }
 }

@@ -7,6 +7,7 @@ import android.location.Location;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
         radiusSeekBar = (SeekBar) findViewById(R.id.radiusSeekBar);
         radiusEditText = (EditText) findViewById(R.id.radiusEditText);
+        radiusEditText.setFilters(new InputFilter[]{new InputFilterMinMax("1", "5")});
 
         getRestaurantsButton = (Button) findViewById(R.id.getRestaurantsButton);
         locationButton = (Button) findViewById(R.id.showYourLocation);

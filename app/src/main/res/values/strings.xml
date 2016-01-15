@@ -16,6 +16,6 @@
     <string name="item_latitude">Latitude</string>
     <string name="item_longitude">Longitude</string>
     <string name="title_activity_Items">Restaurants</string>
-    <string name="showLocationButton">Show my location</string>
+    <string name="showLocationButton">Toon mijn locatie</string>
     <string name="afstandTextView">km</string>
 </resources>
